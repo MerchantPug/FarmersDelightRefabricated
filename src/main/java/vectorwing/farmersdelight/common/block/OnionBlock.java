@@ -28,10 +28,10 @@ public class OnionBlock extends CropBlock
 		super(properties);
 	}
 
-	@Override
-	public BlockState getPlant(BlockGetter world, BlockPos pos) {
-		return ModBlocks.ONION_CROP.get().defaultBlockState();
-	}
+//	@Override
+//	public BlockState getPlant(BlockGetter world, BlockPos pos) {
+//		return ModBlocks.ONION_CROP.get().defaultBlockState();
+//	}
 
 	@Override
 	protected ItemLike getBaseSeedId() {

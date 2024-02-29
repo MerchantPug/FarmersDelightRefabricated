@@ -1,5 +1,10 @@
 package vectorwing.farmersdelight.client.recipebook;
 
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.DataResult;
+
+import java.util.EnumSet;
+
 public enum CookingPotRecipeBookTab
 {
 	MEALS("meals"),

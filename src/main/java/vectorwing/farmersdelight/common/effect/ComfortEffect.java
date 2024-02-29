@@ -16,22 +16,23 @@ public class ComfortEffect extends MobEffect
 	 * If the player has saturation to spend, or has the Regeneration effect, Comfort does nothing.
 	 */
 	public ComfortEffect() {
-		super(MobEffectCategory.BENEFICIAL, 0);
+		super(MobEffectCategory.BENEFICIAL, 14545909);
 	}
 
 	@Override
-	public void applyEffectTick(LivingEntity entity, int amplifier) {
+	public boolean applyEffectTick(LivingEntity entity, int amplifier) {
 		if (entity.hasEffect(MobEffects.REGENERATION)) {
-			return;
+			return true;
 		}
 		if (entity instanceof Player player) {
 			if (player.getFoodData().getSaturationLevel() > 0.0) {
-				return;
+				return true;
 			}
 		}
 		if (entity.getHealth() < entity.getMaxHealth()) {
 			entity.heal(1.0F);
 		}
+		return true;
 	}
 
 	@Override

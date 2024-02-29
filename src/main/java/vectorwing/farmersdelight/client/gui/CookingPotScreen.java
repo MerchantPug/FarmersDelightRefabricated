@@ -26,8 +26,8 @@ import java.util.List;
 
 public class CookingPotScreen extends AbstractContainerScreen<CookingPotMenu> implements RecipeUpdateListener
 {
-	private static final ResourceLocation RECIPE_BUTTON_LOCATION = new ResourceLocation("textures/gui/recipe_button.png");
-	private static final ResourceLocation BACKGROUND_TEXTURE = new ResourceLocation(FarmersDelight.MODID, "textures/gui/cooking_pot.png");
+	private static final WidgetSprites RECIPE_BUTTON = new WidgetSprites(ResourceLocation.withDefaultNamespace("recipe_book/button"), ResourceLocation.withDefaultNamespace("recipe_book/button"));
+	private static final ResourceLocation BACKGROUND_TEXTURE = ResourceLocation.fromNamespaceAndPath(FarmersDelight.MODID, "textures/gui/cooking_pot.png");
 	private static final Rectangle HEAT_ICON = new Rectangle(47, 55, 17, 15);
 	private static final Rectangle PROGRESS_ARROW = new Rectangle(89, 25, 0, 17);
 
@@ -68,14 +68,12 @@ public class CookingPotScreen extends AbstractContainerScreen<CookingPotMenu> im
 
 	@Override
 	public void render(GuiGraphics gui, final int mouseX, final int mouseY, float partialTicks) {
-		this.renderBackground(gui);
-
 		if (this.recipeBookComponent.isVisible() && this.widthTooNarrow) {
-			this.renderBg(gui, partialTicks, mouseX, mouseY);
+			this.renderBackground(gui, mouseX, mouseY, partialTicks);
 			this.recipeBookComponent.render(gui, mouseX, mouseY, partialTicks);
 		} else {
-			this.recipeBookComponent.render(gui, mouseX, mouseY, partialTicks);
 			super.render(gui, mouseX, mouseY, partialTicks);
+			this.recipeBookComponent.render(gui, mouseX, mouseY, partialTicks);
 			this.recipeBookComponent.renderGhostRecipe(gui, this.leftPos, this.topPos, false, partialTicks);
 		}
 
@@ -87,7 +85,7 @@ public class CookingPotScreen extends AbstractContainerScreen<CookingPotMenu> im
 	private void renderHeatIndicatorTooltip(GuiGraphics gui, int mouseX, int mouseY) {
 		if (this.isHovering(HEAT_ICON.x, HEAT_ICON.y, HEAT_ICON.width, HEAT_ICON.height, mouseX, mouseY)) {
 			String key = "container.cooking_pot." + (this.menu.isHeated() ? "heated" : "not_heated");
-			gui.renderTooltip(this.font, TextUtils.getTranslation(key, menu), mouseX, mouseY);
+			gui.renderTooltip(this.font, TextUtils.getTranslation(key), mouseX, mouseY);
 		}
 	}
 
@@ -97,7 +95,7 @@ public class CookingPotScreen extends AbstractContainerScreen<CookingPotMenu> im
 				List<Component> tooltip = new ArrayList<>();
 
 				ItemStack mealStack = this.hoveredSlot.getItem();
-				tooltip.add(((MutableComponent) mealStack.getItem().getDescription()).withStyle(mealStack.getRarity().color));
+				tooltip.add(((MutableComponent) mealStack.getItem().getDescription()).withStyle(mealStack.getRarity().getStyleModifier()));
 
 				ItemStack containerStack = this.menu.blockEntity.getContainer();
 				String container = !containerStack.isEmpty() ? containerStack.getItem().getDescription().getString() : "";

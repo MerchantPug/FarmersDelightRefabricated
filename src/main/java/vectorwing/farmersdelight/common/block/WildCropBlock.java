@@ -3,6 +3,7 @@ package vectorwing.farmersdelight.common.block;
 import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.Holder;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
@@ -18,12 +19,11 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-@SuppressWarnings("deprecation")
 public class WildCropBlock extends FlowerBlock implements BonemealableBlock
 {
 	protected static final VoxelShape SHAPE = Block.box(2.0D, 0.0D, 2.0D, 14.0D, 13.0D, 14.0D);
 
-	public WildCropBlock(MobEffect suspiciousStewEffect, int effectDuration, Properties properties) {
+	public WildCropBlock(Holder<MobEffect> suspiciousStewEffect, int effectDuration, Properties properties) {
 		super(suspiciousStewEffect, effectDuration, properties);
 		FlammableBlockRegistry.getDefaultInstance().add(this, this.getFlammability(null, null, null, null), this.getFireSpreadSpeed(null, null, null, null));
 	}

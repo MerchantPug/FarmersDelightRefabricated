@@ -8,12 +8,12 @@
     {
       "condition": "minecraft:match_tool",
       "predicate": {
-        "tag": "farmersdelight:straw_harvesters"
+        "items": "#farmersdelight:straw_harvesters"
       }
     },
     {
       "condition": "block_state_property",
-      "block": "minecraft:grass"
+      "block": "minecraft:short_grass"
     }
   ],
   "item": "farmersdelight:straw"
