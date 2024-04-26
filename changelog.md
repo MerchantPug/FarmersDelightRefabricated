@@ -1,2 +1,1 @@
-- fixed some dye tags
-- fixed barbecue stick recipe
+- Fixed Yarn remapping conflicts regarding a compat layer class.
