@@ -1,2 +1,1 @@
-- fixed some dye tags
-- fixed barbecue stick recipe
+- Add by_by (Belarusian) lang file ([#38](https://github.com/MehVahdJukaar/FarmersDelight/pull/38)) - observr
